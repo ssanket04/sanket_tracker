@@ -26,7 +26,7 @@
   <header class="site-header">
     <div class="container">
       <div class="logo">
-        <span>◈</span> Sanket<span>.exe</span>
+        <span>◈</span> Sanket<span class="logo-exe">.exe</span>
       </div>
       <nav class="nav-links" style="gap:6px">
         <button class="nav-btn active" data-page="calendar">Calendar</button>
@@ -91,7 +91,7 @@
         </div>
 
         <div style="text-align:center;margin-top:8px">
-          <button onclick="App.openDay(Storage.formatDate(new Date()))" style="background:var(--text-primary);color:white;padding:13px 32px;border-radius:var(--radius-md);font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition)">
+          <button onclick="App.openDay(Storage.formatDate(new Date()))" class="log-today-btn" style="background:var(--text-primary);color:white;padding:13px 32px;border-radius:var(--radius-md);font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition)">
             ✏️ Log Today
           </button>
         </div>

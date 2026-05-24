@@ -99,8 +99,14 @@ input, textarea { font-family: inherit; }
   display: flex;
   align-items: center;
   gap: 0;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease;
 }
 .logo span { color: #000000; }
+.logo .logo-exe {
+  color: var(--green);
+  font-style: italic;
+}
 .nav-links {
   display: flex;
   gap: 8px;
@@ -117,6 +123,11 @@ input, textarea { font-family: inherit; }
 .nav-btn.active { background: var(--text-primary); color: white; }
 
 [data-theme="dark"] .nav-btn.active { color: #000000; }
+
+/* Log Today button dark mode fix */
+[data-theme="dark"] #page-calendar .log-today-btn {
+  color: #000000 !important;
+}
 
 /* === CARDS === */
 .card {
@@ -263,9 +274,11 @@ input, textarea { font-family: inherit; }
 @media (max-width: 640px) {
   .container { padding: 0 14px; }
   .card { padding: 18px; }
-  .site-header .container { height: 54px; }
-  .logo { font-size: 1.2rem; }
-  .nav-btn { padding: 6px 12px; font-size: 0.8rem; }
+  .site-header .container { height: 48px; }
+  .logo { font-size: 1rem; }
+  .nav-btn { padding: 5px 9px; font-size: 0.75rem; }
+  .nav-links { gap: 4px !important; }
+  .theme-toggle-btn { width: 30px; height: 30px; font-size: 0.85rem; }
   #toast-container { bottom: 16px; right: 12px; left: 12px; }
   .toast { max-width: 100%; }
 }
@@ -301,6 +314,7 @@ input, textarea { font-family: inherit; }
 
 [data-theme="dark"] .logo,
 [data-theme="dark"] .logo span { color: #ffffff; }
+[data-theme="dark"] .logo .logo-exe { color: var(--green); }
 
 [data-theme="dark"] .site-header {
   background: rgba(17,17,16,0.95);
