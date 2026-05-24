@@ -1,0 +1,269 @@
+/* =============================================
+   DAILY DETAIL VIEW STYLES
+   ============================================= */
+
+/* === BACK BUTTON === */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  margin-bottom: 20px;
+  transition: var(--transition);
+}
+.back-btn:hover { background: var(--bg-subtle); color: var(--text-primary); }
+
+/* === DAY HEADER === */
+.day-header {
+  margin-bottom: 24px;
+}
+.day-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1.1;
+}
+.day-header .day-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+/* === SCORE PANEL === */
+.score-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.score-panel-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.score-num {
+  font-family: var(--font-display);
+  font-size: 2.8rem;
+  line-height: 1;
+  font-weight: 400;
+}
+.score-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 4px; }
+.win-day-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, var(--green-light), #d0f0e0);
+  color: var(--green);
+  border: 1.5px solid var(--green-mid);
+  animation: pop 0.4s ease;
+}
+.win-day-badge.not-yet {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  border-color: var(--border);
+  font-weight: 500;
+  animation: none;
+}
+.tasks-count { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 10px; }
+
+/* === SUMMARY BOX === */
+.summary-box {
+  background: var(--bg-subtle);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  border-left: 3px solid var(--green);
+}
+.summary-box.yellow { border-color: var(--yellow); }
+.summary-box.red { border-color: var(--red); }
+
+/* === ACTIVITY LIST === */
+.activities-section { margin-bottom: 24px; }
+.section-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.activity-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.activity-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.activity-card.priority-card {
+  border-color: var(--yellow-mid);
+  background: linear-gradient(135deg, #fffff8, #fffef0);
+}
+.activity-card.completed {
+  border-color: var(--green-mid);
+  background: var(--green-light);
+}
+.activity-card.failed {
+  border-color: var(--red-mid);
+  background: var(--red-light);
+}
+.activity-card.partial {
+  border-color: var(--yellow-mid);
+  background: var(--yellow-light);
+}
+
+/* Toggle button */
+.toggle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--border-strong);
+  background: var(--bg-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: var(--transition);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+.toggle-btn:hover { border-color: var(--text-secondary); }
+.toggle-btn.done {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.toggle-btn.fail {
+  background: var(--red);
+  border-color: var(--red);
+  color: white;
+}
+.toggle-btn.partial {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: white;
+}
+
+/* Status indicator buttons */
+.status-indicators {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.status-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.status-btn.green-btn {
+  background: var(--green-light);
+  border-color: var(--green-mid);
+  color: var(--green);
+}
+.status-btn.green-btn:hover {
+  background: var(--green);
+  color: white;
+}
+.status-btn.red-btn {
+  background: var(--red-light);
+  border-color: var(--red-mid);
+  color: var(--red);
+}
+.status-btn.red-btn:hover {
+  background: var(--red);
+  color: white;
+}
+.status-btn.yellow-btn {
+  background: var(--yellow-light);
+  border-color: var(--yellow-mid);
+  color: var(--yellow);
+}
+.status-btn.yellow-btn:hover {
+  background: var(--yellow);
+  color: white;
+}
+
+/* Activity info */
+.activity-info { display: flex; flex-direction: column; gap: 4px; }
+.activity-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.activity-note-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  outline: none;
+  padding: 2px 0;
+  border-bottom: 1px dashed transparent;
+  transition: var(--transition);
+}
+.activity-note-input:focus {
+  border-bottom-color: var(--border-strong);
+  color: var(--text-primary);
+}
+.activity-note-input::placeholder { color: var(--text-muted); }
+
+/* Time badge */
+.time-badge {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-weight: 500;
+}
+
+/* === STREAK ROW === */
+.streak-row-daily {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 640px) {
+  .activity-card { grid-template-columns: 1fr; gap: 10px; }
+  .status-indicators { justify-content: flex-end; }
+  .score-num { font-size: 2.2rem; }
+  .day-header h2 { font-size: 1.4rem; }
+}
