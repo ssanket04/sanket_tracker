@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sanket.exe — Personal productivity tracker with daily habits, streaks, and weekly reviews." />
+  <meta name="theme-color" content="#f9f8f5" />
+  <title>Sanket.exe — Daily Productivity</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/calendar.css" />
+  <link rel="stylesheet" href="css/daily.css" />
+  <link rel="stylesheet" href="css/weekly.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Sanket.exe" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <span>◈</span> Sanket<span>.exe</span>
+      </div>
+      <nav class="nav-links" style="gap:6px">
+        <button class="nav-btn active" data-page="calendar">Calendar</button>
+        <button class="nav-btn" data-page="weekly">Week Review</button>
+        <button class="nav-btn" id="open-today" style="background:var(--green);color:white;font-weight:600">Today</button>
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle dark/light mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="padding: 24px 0 80px;">
+    <div class="container">
+
+      <!-- ==============================
+           PAGE: CALENDAR
+           ============================== -->
+      <div class="page active" id="page-calendar">
+
+        <div class="quote-banner animate-in" id="daily-quote">
+          <p>Loading your daily motivation...</p>
+        </div>
+
+        <div id="streak-reward" style="
+          display:none;
+          background:linear-gradient(135deg,#fff9e8,#fff3cc);
+          border:1px solid #f0d060;
+          border-radius:var(--radius-md);
+          padding:12px 20px;
+          font-size:0.9rem;
+          font-weight:600;
+          color:#8a6800;
+          margin-bottom:16px;
+          text-align:center;
+        "></div>
+
+        <div class="streak-section" id="streak-section"></div>
+
+        <div class="month-nav animate-in">
+          <button class="month-btn" id="prev-month">&#8249;</button>
+          <div class="month-title" id="month-title">—</div>
+          <button class="month-btn" id="next-month">&#8250;</button>
+        </div>
+
+        <div class="calendar-wrap animate-in">
+          <div class="calendar-days-header">
+            <div class="cal-day-name">Sun</div>
+            <div class="cal-day-name">Mon</div>
+            <div class="cal-day-name">Tue</div>
+            <div class="cal-day-name">Wed</div>
+            <div class="cal-day-name">Thu</div>
+            <div class="cal-day-name">Fri</div>
+            <div class="cal-day-name">Sat</div>
+          </div>
+          <div class="calendar-grid" id="calendar-grid"></div>
+        </div>
+
+        <div class="legend animate-in">
+          <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div><span>≥80% Productive</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div><span>50–79%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div><span>&lt;50%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--text-primary)"></div><span>Today</span></div>
+        </div>
+
+        <div style="text-align:center;margin-top:8px">
+          <button onclick="App.openDay(Storage.formatDate(new Date()))" style="background:var(--text-primary);color:white;padding:13px 32px;border-radius:var(--radius-md);font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition)">
+            ✏️ Log Today
+          </button>
+        </div>
+
+      </div><!-- /page-calendar -->
+
+
+      <!-- ==============================
+           PAGE: DAILY DETAIL
+           ============================== -->
+      <div class="page" id="page-daily">
+
+        <button class="back-btn" id="back-btn">← Back to Calendar</button>
+
+        <div class="day-header animate-in">
+          <h2 id="day-title">—</h2>
+          <div class="day-meta" id="day-type"></div>
+        </div>
+
+        <div class="streak-row-daily" id="daily-streaks"></div>
+
+        <div class="score-panel animate-in">
+          <div class="score-panel-top">
+            <div>
+              <div class="score-num" id="score-num">0%</div>
+              <div class="score-label">Productivity Score</div>
+            </div>
+            <div id="win-day-badge" class="win-day-badge not-yet">⬜ Complete top 3 priorities to win.</div>
+          </div>
+          <div class="tasks-count" id="tasks-count">0 / 8 tasks completed</div>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar-fill green" id="score-fill" style="width:0%"></div>
+          </div>
+          <div class="summary-box" id="day-summary">Track your activities below to generate your daily summary.</div>
+        </div>
+
+        <!-- Priority Activities -->
+        <div class="activities-section animate-in">
+          <div class="section-title">⭐ Top Priorities</div>
+          <div id="priority-activities"></div>
+        </div>
+
+        <!-- Regular Activities -->
+        <div class="activities-section animate-in">
+          <div class="section-title">📋 Daily Activities</div>
+          <div id="regular-activities"></div>
+        </div>
+
+        <!-- Extra Activity Notes -->
+        <div class="activities-section animate-in">
+          <div class="section-title">📌 Additional Activities Today</div>
+          <div id="extra-notes-container"></div>
+          <button class="add-extra-note-btn" id="add-extra-note-btn">
+            + Add Activity / Note
+          </button>
+        </div>
+
+        <!-- Tip -->
+        <div style="background:var(--blue-light);border:1px solid var(--blue-mid);border-radius:var(--radius-md);padding:14px 18px;font-size:0.82rem;color:var(--blue);margin-top:8px">
+          💡 <strong>Tip:</strong> Use the status buttons (✓ Completed, ✕ Not Completed, ● Partially Completed) on the right side of each activity. The circle indicator will update accordingly.
+        </div>
+
+        <!-- DONE BUTTON -->
+        <button class="done-btn" id="done-btn">
+          ✅ Done — Save & Go to Calendar
+        </button>
+
+      </div><!-- /page-daily -->
+
+
+      <!-- ==============================
+           PAGE: WEEKLY REVIEW
+           ============================== -->
+      <div class="page" id="page-weekly">
+
+        <div class="weekly-hero animate-in">
+          <h2>Weekly Review</h2>
+          <div class="week-range" id="week-range">—</div>
+          <div class="weekly-score-big" id="weekly-score">—</div>
+          <div class="weekly-score-label"><span id="weekly-tasks">— tasks completed</span></div>
+        </div>
+
+        <div class="week-selector animate-in">
+          <label style="font-size:0.85rem;font-weight:600;color:var(--text-secondary);white-space:nowrap">Select Week:</label>
+          <select id="week-select" size="1" style="max-height:200px;overflow-y:auto"></select>
+        </div>
+
+        <div class="weekly-grid">
+          <div class="w-card">
+            <h3>Daily Performance</h3>
+            <div class="day-bar-list" id="day-bars"></div>
+          </div>
+          <div class="w-card">
+            <h3>Streak Summary</h3>
+            <div id="weekly-streaks"></div>
+          </div>
+          <div class="w-card full-width">
+            <h3>Habit Completion This Week</h3>
+            <div id="habit-list"></div>
+          </div>
+          <div class="w-card">
+            <h3>⚠️ Improvement Areas</h3>
+            <div id="improvements-list"></div>
+          </div>
+          <div class="w-card">
+            <h3>⭐ Priority Performance</h3>
+            <div class="priority-matrix" id="priorities-perf"></div>
+          </div>
+
+          <!-- Extra notes from the week -->
+          <div class="w-card full-width" id="weekly-extra-notes-section" style="display:none">
+            <h3>📌 Extra Activities This Week</h3>
+            <div id="weekly-extra-notes"></div>
+          </div>
+        </div>
+
+        <div class="weekly-summary animate-in" id="weekly-summary">
+          <div class="ws-icon">📋</div>
+          <p>Loading your weekly summary...</p>
+        </div>
+
+      </div><!-- /page-weekly -->
+
+    </div>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <script src="js/storage.js"></script>
+  <script src="js/calendar.js"></script>
+  <script src="js/daily.js"></script>
+  <script src="js/weekly.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

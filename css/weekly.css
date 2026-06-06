@@ -1,0 +1,145 @@
+/* =============================================
+   WEEKLY REVIEW PAGE STYLES
+   ============================================= */
+
+.weekly-hero {
+  background: linear-gradient(135deg, var(--text-primary), #2d2c29);
+  color: white;
+  border-radius: var(--radius-xl);
+  padding: 28px 30px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.weekly-hero::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: -30px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.04);
+}
+.weekly-hero h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+.weekly-hero .week-range { font-size: 0.85rem; opacity: 0.6; margin-bottom: 20px; }
+.weekly-score-big {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  line-height: 1;
+  font-weight: 400;
+}
+.weekly-score-label { font-size: 0.85rem; opacity: 0.6; margin-top: 4px; }
+
+/* === WEEKLY GRID === */
+.weekly-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+@media (max-width: 600px) { .weekly-grid { grid-template-columns: 1fr; } }
+
+.w-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+}
+.w-card h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.w-card.full-width { grid-column: 1 / -1; }
+
+/* Day bars */
+.day-bar-list { display: flex; flex-direction: column; gap: 8px; }
+.day-bar-row { display: flex; align-items: center; gap: 10px; }
+.day-bar-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); width: 28px; flex-shrink: 0; }
+.day-bar-wrap { flex: 1; background: var(--bg-subtle); border-radius: 100px; height: 10px; overflow: hidden; }
+.day-bar-fill { height: 100%; border-radius: 100px; transition: width 0.6s ease; }
+.day-bar-pct { font-size: 0.78rem; color: var(--text-muted); width: 36px; text-align: right; flex-shrink: 0; }
+
+/* Habit list */
+.habit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+.habit-row:last-child { border-bottom: none; }
+.habit-row .habit-name { color: var(--text-primary); font-weight: 500; }
+.habit-row .habit-count { font-size: 0.8rem; color: var(--text-muted); }
+.habit-row .habit-bar-mini {
+  width: 60px;
+  height: 6px;
+  border-radius: 100px;
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+.habit-bar-mini-fill { height: 100%; border-radius: 100px; background: var(--green); }
+
+/* Improvement list */
+.improvement-list { display: flex; flex-direction: column; gap: 8px; }
+.improvement-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  padding: 10px 12px;
+  background: var(--red-light);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+}
+.improvement-item .imp-icon { flex-shrink: 0; }
+
+/* Priority matrix */
+.priority-matrix { display: flex; flex-direction: column; gap: 10px; }
+.prio-row { display: flex; flex-direction: column; gap: 4px; }
+.prio-name { font-size: 0.85rem; font-weight: 600; display: flex; justify-content: space-between; }
+.prio-name span { color: var(--text-muted); font-weight: 400; }
+
+/* Weekly summary */
+.weekly-summary {
+  background: linear-gradient(135deg, var(--green-light), #d8f0e8);
+  border: 1.5px solid var(--green-mid);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 24px;
+}
+.weekly-summary .ws-icon { font-size: 1.5rem; margin-bottom: 8px; }
+
+/* Week selector */
+.week-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+.week-selector select {
+  flex: 1;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  outline: none;
+  cursor: pointer;
+}
+.week-selector select:focus { border-color: var(--green); }
