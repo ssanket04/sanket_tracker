@@ -117,7 +117,7 @@ const CalendarView = {
       const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
       const dayData = monthData[d-1]?.day;
       const isFuture = dateStr > todayStr;
-      const isBeforeStart = dateStr < "2026-05-25";
+      const isBeforeStart = Storage.isBeforeStart(dateStr);
       const isToday = dateStr === todayStr;
 
       const cell = document.createElement('div');
